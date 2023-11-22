@@ -1,0 +1,79 @@
+version: '3'
+
+services:
+  mariadb:
+    build: ./requirements/mariadb
+    container_name: mariadb
+    networks:
+      intra:
+        ipv4_address: 192.168.0.10
+    env_file:
+      - ./test.env
+    expose:
+      - "3306"
+    tty: true		# for test
+    stdin_open: true	# for test
+    volumes:
+      - mariadb_volume:/var/lib/mysql
+    restart: always
+
+
+  wordpress:
+    build: ./requirements/wordpress
+    container_name: wordpress
+    depends_on:
+      - mariadb
+    volumes:
+      - wordpress_volume:/var/www/html
+    networks:
+      intra:
+        ipv4_address: 192.168.0.11
+    env_file:
+      - ./test.env
+    expose:
+      - "9000"
+    tty: true		# for test
+    stdin_open: true	# for test
+    restart: always
+
+  nginx:
+    build: ./requirements/nginx
+    container_name: nginx
+    depends_on:
+      - wordpress
+    volumes:
+      - wordpress_volume:/var/www/html
+    networks:
+      intra:
+        ipv4_address: 192.168.0.12
+    env_file:
+      - ./test.env
+    ports:
+      - "443:443"
+    tty: true		# for test
+    stdin_open: true	# for test
+    restart: always
+
+
+volumes:
+  mariadb_volume:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: /home/jonchoi/data/mariadb
+
+  wordpress_volume:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: /home/jonchoi/data/wordpress
+
+networks:
+  intra:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.0.0/16

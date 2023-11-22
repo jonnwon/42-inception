@@ -1,0 +1,89 @@
+#server {
+#	listen 443 ssl;
+#	ssl_protocols  TLSv1.2 TLSv1.3;
+#
+#	ssl_certificate /etc/ssl/certs/server.crt;
+#	ssl_certificate_key /etc/ssl/private/server_pkey.pem;
+#
+#
+#	root /var/www/html;
+#
+#	# Add index.php to the list if you are using PHP
+#	index index.html index.htm index.nginx-debian.html index.php;
+#
+#	server_name jonchoi.42.fr;
+#
+#	location / {
+#		# First attempt to serve request as file, then
+#		# as directory, then fall back to displaying a 404.
+#		try_files $uri $uri/ =404;
+#	}
+#
+#	# pass PHP scripts to FastCGI server
+#	#
+#	location ~ \.php$ {
+#		include snippets/fastcgi-php.conf;
+#	#
+#	#	# With php-fpm (or other unix sockets):
+#	#	fastcgi_pass unix:/run/php/php7.4-fpm.sock;
+#		fastcgi_param SCRIPT_FILENAME /var/www/html/$fastcgi_script_name;
+#	#	# With php-cgi (or other tcp sockets):
+#		fastcgi_pass 192.168.0.11:9000;
+#	}
+#}
+#
+#server {
+#	listen 443 ssl;
+#	server_name jonchoi.42.fr;
+#
+#	ssl_protocols  TLSv1.2 TLSv1.3;
+#	ssl_certificate /etc/ssl/certs/server.crt;
+#	ssl_certificate_key /etc/ssl/private/server_pkey.pem;
+#
+#	root /var/www/html;
+#
+#	index index.php index.html index.htm;
+#
+#	location / {
+#		try_files $uri $uri/ =404;
+#	}
+#
+#	location ~ \.php$ {
+#		include snippets/fastcgi-php.conf;
+#
+#		fastcgi_param SCRIPT_FILENAME /var/www/html/$fastcgi_script_name;
+#		fastcgi_pass wordpress:9000;
+#		fastcgi_connect_timeout 300;
+# 		fastcgi_send_timeout 300;
+#	}
+#}
+
+server {
+	server_name jonchoi.42.fr localhost;
+	listen 443 ssl;
+
+	root   /var/www/html;
+ 	index  readme.html;
+
+	ssl_protocols TLSv1.2 TLSv1.3;
+	ssl_certificate /etc/ssl/certs/server.crt;
+	ssl_certificate_key /etc/ssl/private/server_pkey.pem;
+
+#	location ~ \.php$ {
+#  		try_files $uri /index.php =404;
+#  		fastcgi_pass wordpress:9000;
+#  		fastcgi_index index.php;
+#  		fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+# 		include fastcgi_params;
+#	 }
+#
+	location ~ \.php$ {
+		include snippets/fastcgi-php.conf;
+
+		fastcgi_param SCRIPT_FILENAME /var/www/html/$fastcgi_script_name;
+		fastcgi_pass 192.168.0.11:9000;
+		fastcgi_connect_timeout 300;
+ 		fastcgi_send_timeout 300;
+	}
+
+}

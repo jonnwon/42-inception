@@ -11,11 +11,13 @@ if [ ! -f /var/www/html/wp-config.php ]; then
 
   wp core download --allow-root --path=/var/www/html/
   wp core config --dbname=$MARIADB_NAME --dbuser=$MARIADB_USER --dbpass=$MARIADB_PWD --dbhost=mariadb:3306 --dbprefix=wp_ --allow-root --path=/var/www/html/
-  wp core install --url=https://$DOMAIN_NAME --title="jonchoi inception" --admin_user=$WP_ADMIN_USER --admin_password=$WP_ADMIN_PWD --admin_email=$WP_ADMIN_EMAIL --allow-root --path=/var/www/html/
-  wp user create "$WP_USER" "$WP_USER_EMAIL" --role=subscriber --user_pass="$WP_USER_PWD" --allow-root --path=/var/www/html/
+#  wp core install --url=https://$DOMAIN_NAME --title="jonchoi inception" --admin_user=$WP_ADMIN_USER --admin_password=$WP_ADMIN_PWD --admin_email=$WP_ADMIN_EMAIL --allow-root --path=/var/www/html/
+#  wp user create "$WP_USER" "$WP_USER_EMAIL" --role=subscriber --user_pass="$WP_USER_PWD" --allow-root --path=/var/www/html/
 fi
 
 mkdir -p /run/php/
 chown www-data:www-data /run/php/
+
+echo "127.0.0.1 jonchoi.42.fr" >> /etc/hosts
 
 exec "$@"

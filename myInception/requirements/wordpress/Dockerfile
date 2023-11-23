@@ -18,7 +18,7 @@ sendmail \
 vim && \
 chmod +x entrypoint.sh
 
-#COPY ./conf/php-fpm.conf /etc/php/7.4/fpm/pool.d/www.conf
+#COPY ./conf/www.conf /etc/php/7.4/fpm/pool.d/www.conf
 
 WORKDIR /var/www/html
 

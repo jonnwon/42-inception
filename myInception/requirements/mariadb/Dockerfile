@@ -8,7 +8,7 @@ RUN apt-get update && \
     apt-get install -y vim mariadb-server && \
     chmod +x entrypoint.sh
 
-COPY ./conf/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
+COPY ./conf/test.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
 
 VOLUME ["/var/lib/mysql"]
 

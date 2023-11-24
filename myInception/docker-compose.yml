@@ -11,8 +11,8 @@ services:
       - ./test.env
     expose:
       - "3306"
-    tty: true		# for test
-    stdin_open: true	# for test
+    tty: true
+    stdin_open: true
     volumes:
       - mariadb_volume:/var/lib/mysql
     restart: always
@@ -32,8 +32,8 @@ services:
       - ./test.env
     expose:
       - "9000"
-    tty: true		# for test
-    stdin_open: true	# for test
+    tty: true
+    stdin_open: true
     restart: always
 
   nginx:
@@ -50,8 +50,8 @@ services:
       - ./test.env
     ports:
       - "443:443"
-    tty: true		# for test
-    stdin_open: true	# for test
+    tty: true
+    stdin_open: true
     restart: always
 
 

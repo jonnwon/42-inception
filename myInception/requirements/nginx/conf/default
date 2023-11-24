@@ -89,7 +89,7 @@
 #}
 
 server {
-	server_name jonchoi.42.fr localhost;
+	server_name jonchoi.42.fr;
 	listen 443 ssl;
 
 	root   /var/www/html;

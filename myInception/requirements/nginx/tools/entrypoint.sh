@@ -1,7 +1,6 @@
 #!/bin/bash
 
 mv /tmp/default /etc/nginx/sites-available/default
-#cp /default /var/www/html/default
 
 openssl	req -x509 -nodes -days 365 -newkey rsa:2048 \
 		-keyout /etc/ssl/private/server_pkey.pem \

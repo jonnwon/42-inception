@@ -15,7 +15,7 @@ if [ ! -d "/var/lib/mysql/$MARIADB_NAME" ]; then
     CREATE USER '$MARIADB_USER'@'%' IDENTIFIED BY '$MARIADB_PWD';
     GRANT ALL PRIVILEGES ON $MARIADB_NAME.* TO '$MARIADB_USER'@'%' WITH GRANT OPTION;
     FLUSH PRIVILEGES;
-    EOSQL
+EOSQL
 
     mysqladmin -u root shutdown
 fi

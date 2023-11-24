@@ -11,7 +11,4 @@ RUN apt-get update && \
 
 ENTRYPOINT ["/entrypoint.sh"]
 
-#CMD ["nginx"]
-
 CMD ["nginx", "-g", "daemon off;"]
-#CMD ["/bin/bash"]

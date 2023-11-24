@@ -8,7 +8,7 @@ services:
       intra:
         ipv4_address: 192.168.0.10
     env_file:
-      - ./test.env
+      - ./.env
     expose:
       - "3306"
     tty: true
@@ -29,7 +29,7 @@ services:
       intra:
         ipv4_address: 192.168.0.11
     env_file:
-      - ./test.env
+      - ./.env
     expose:
       - "9000"
     tty: true
@@ -47,13 +47,12 @@ services:
       intra:
         ipv4_address: 192.168.0.12
     env_file:
-      - ./test.env
+      - ./.env
     ports:
       - "443:443"
     tty: true
     stdin_open: true
     restart: always
-
 
 volumes:
   mariadb_volume:
